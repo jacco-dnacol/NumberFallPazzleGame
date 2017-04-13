@@ -71,7 +71,6 @@
   <ItemGroup>
     <Compile Include="Assets\Script\DropData.cs" />
     <Compile Include="Assets\Script\DropDataManager.cs" />
-    <Compile Include="Assets\Script\TouchSystem.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
