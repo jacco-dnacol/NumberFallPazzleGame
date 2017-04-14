@@ -14,13 +14,14 @@ public class DropData : MonoBehaviour {
 		pos = Vector2.zero;
 		obj_id = 0;
 
-		// サイズは可変することはない
+		// サイズは可変することはないのでstartで行う
 		float sizeX = GetComponent<SpriteRenderer>().bounds.size.x;
 		float sizeY = GetComponent<SpriteRenderer>().bounds.size.y;
 		float scelaX = 1.0f / sizeX;
 		float scelaY = 1.0f / sizeY;
 		//transform.localScale = new Vector2(DropDataManager.DROP_SIZE, DropDataManager.DROP_SIZE);
 		transform.localScale = new Vector2(scelaX, scelaY);
+		GetComponent<BoxCollider2D>().size = new Vector2(scelaX, scelaY);
 	}
 	
 	// Update is called once per frame

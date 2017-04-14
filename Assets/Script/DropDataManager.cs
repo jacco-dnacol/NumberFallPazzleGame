@@ -28,4 +28,14 @@ public class DropDataManager : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	/// <summary>
+	/// 指定したposからオブジェクトに設定された番号を取得する
+	/// </summary>
+	/// <param name="in_pos"></param>
+	/// <returns></returns>
+	public int GetTextNumber(Vector2 in_pos)
+	{
+		return 0;
+	}
 }
