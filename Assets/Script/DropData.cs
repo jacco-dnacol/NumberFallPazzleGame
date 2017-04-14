@@ -21,12 +21,24 @@ public class DropData : MonoBehaviour {
 		float scelaY = 1.0f / sizeY;
 		//transform.localScale = new Vector2(DropDataManager.DROP_SIZE, DropDataManager.DROP_SIZE);
 		transform.localScale = new Vector2(scelaX, scelaY);
-		GetComponent<BoxCollider2D>().size = new Vector2(scelaX, scelaY);
+
+		///
+		/// めんどくさいので見た目でサイズ決定。
+		/// 後々計算でサイズが変わるようにすること
+		GetComponent<BoxCollider2D>().size = new Vector2(0.1f, 0.1f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if( Input.GetMouseButtonDown(0) == true )
+		{
+			Vector2 tap_vec = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			Collider2D box_collider = Physics2D.OverlapPoint(tap_vec);
+			if( box_collider == true )
+			{
+				Debug.Log("point：" + tap_vec + obj_id + "番タップ");
+			}
+		}
 	}
 
 	/// <summary>

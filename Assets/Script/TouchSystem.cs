@@ -17,8 +17,8 @@ public class TouchSystem : MonoBehaviour {
 		if(Input.GetMouseButton(MOUSE_CLICK_LEFT) == true)
 		{
 			// 座標変換
-			Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			Debug.Log("Mouse：" + pos);
+			//Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			//Debug.Log("Mouse：" + pos);
 		}
 
 		// マウスが押下状態から非押下状態になった時
