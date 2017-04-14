@@ -280,7 +280,6 @@ GameObject:
   - 114: {fileID: 1698368898}
   - 114: {fileID: 1698368897}
   - 114: {fileID: 1698368900}
-  - 114: {fileID: 1698368901}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -344,6 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7cf635191f414e4f8f6e7ea36b4b5aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
 --- !u!114 &1698368901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,3 +355,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 480f14cc2fc1c5242ba9f9000319da21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+=======
+>>>>>>> origin/master
