@@ -12,9 +12,16 @@ public class TouchSystem : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		// マウス押下中
 		if(Input.GetMouseButton(MOUSE_CLICK_LEFT) == true)
 		{
 			Debug.Log("Mouse：" + Input.mousePosition);
+		}
+
+		// マウスが押下状態から非押下状態になった時
+		if(Input.GetMouseButtonUp(MOUSE_CLICK_LEFT) == true)
+		{
+
 		}
 	}
 }

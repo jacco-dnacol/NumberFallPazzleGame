@@ -55,12 +55,12 @@ public class DropData : MonoBehaviour {
 
 		obj_id = in_pos_id;
 
+		// 3D座標に変換
 		Vector2 vec;
-		//vec.x = ((in_pos_id % DropDataManager.DROP_WIDTH_MAX) * DropDataManager.DROP_SIZE);
-		//vec.y = ((in_pos_id / DropDataManager.DROP_HEIGHT_MAX) * DropDataManager.DROP_SIZE);
 		vec.x = (in_pos_id % DropDataManager.DROP_WIDTH_MAX);
 		vec.y = (in_pos_id / DropDataManager.DROP_HEIGHT_MAX);
 		SetPos(vec);
+
 		setSprite(obj_id);
 		is_create = true;
 	}
