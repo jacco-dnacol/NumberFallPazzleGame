@@ -2,17 +2,13 @@
 using System.Collections;
 
 public class DropData : MonoBehaviour {
-	private int text_number;
-	private Vector2 pos;
-	private int obj_id;
+	private int text_number = 0;
+	private Vector2 pos = Vector2.zero;
+	private int obj_id = 0;
 
-	private bool is_create;
+	private bool is_create = false;
 	// Use this for initialization
 	void Start () {
-		text_number = 0;
-		is_create = false;
-		pos = Vector2.zero;
-		obj_id = 0;
 
 		// サイズは可変することはないのでstartで行う
 		float sizeX = GetComponent<SpriteRenderer>().bounds.size.x;
