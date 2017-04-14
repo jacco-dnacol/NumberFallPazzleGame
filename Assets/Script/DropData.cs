@@ -26,13 +26,26 @@ public class DropData : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if( Input.GetMouseButtonDown(0) == true )
+		
+	}
+
+	/// <summary>
+	/// DropData更新関数。Update関数の代わりにこちらを使用する
+	/// DropDataManagerから呼び出される
+	/// </summary>
+	public void NextFrame()
+	{
+		if (Input.GetMouseButtonDown(0) == true)
 		{
-			Vector2 tap_vec = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			Vector3 tap_vec = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			Collider2D box_collider = Physics2D.OverlapPoint(tap_vec);
-			if( box_collider == true )
+			if (box_collider)
 			{
-				Debug.Log("point：" + tap_vec + obj_id + "番タップ");
+				RaycastHit2D hit_obj = Physics2D.Raycast(tap_vec, -Vector2.up);
+				if(hit_obj)
+				{
+					Debug.Log(box_collider + "：" + "point：" + tap_vec + obj_id + "番タップ");
+				}
 			}
 		}
 	}
@@ -60,10 +73,11 @@ public class DropData : MonoBehaviour {
 			Debug.Log("不正なIDを設定しようとしています");
 			return;
 		}
+		GetComponent<DropData>().name = "DropMaterial_" + in_pos_id;
 		text_number = in_num;
 
 		obj_id = in_pos_id;
-
+		Debug.Log(obj_id + "番生成");
 		// 3D座標に変換
 		Vector2 vec;
 		vec.x = (in_pos_id % DropDataManager.DROP_WIDTH_MAX);

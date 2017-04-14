@@ -26,7 +26,13 @@ public class DropDataManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		for (int i = 0; i < DROP_HEIGHT_MAX; i++)
+		{
+			for (int j = 0; j < DROP_WIDTH_MAX; j++)
+			{
+				drop_data[i, j].GetComponent<DropData>().NextFrame();
+			}
+		}
 	}
 
 	/// <summary>
