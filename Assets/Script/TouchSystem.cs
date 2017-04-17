@@ -15,7 +15,9 @@ public class TouchSystem : MonoBehaviour {
 		// マウス押下中
 		if(Input.GetMouseButton(MOUSE_CLICK_LEFT) == true)
 		{
-			Debug.Log("Mouse：" + Input.mousePosition);
+			//Vector2 touch_vec = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			//Debug.Log("Mouse：" + Input.mousePosition);
+			//Debug.Log("Mouse：" + touch_vec);
 		}
 
 		// マウスが押下状態から非押下状態になった時

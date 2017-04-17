@@ -2,17 +2,13 @@
 using System.Collections;
 
 public class DropData : MonoBehaviour {
-	private int text_number;
-	private Vector2 pos;
-	private int obj_id;
+	private int text_number = 0;
+	private Vector2 pos = Vector2.zero;
+	private int obj_id = 0;
 
-	private bool is_create;
+	private bool is_create = false;
 	// Use this for initialization
 	void Start () {
-		text_number = 0;
-		is_create = false;
-		pos = Vector2.zero;
-		obj_id = 0;
 
 		// サイズは可変することはない
 		float sizeX = GetComponent<SpriteRenderer>().bounds.size.x;
@@ -21,11 +17,24 @@ public class DropData : MonoBehaviour {
 		float scelaY = 1.0f / sizeY;
 		//transform.localScale = new Vector2(DropDataManager.DROP_SIZE, DropDataManager.DROP_SIZE);
 		transform.localScale = new Vector2(scelaX, scelaY);
+
+		///
+		/// めんどくさいので見た目でサイズ決定。
+		/// 後々計算でサイズが変わるようにすること
+		GetComponent<BoxCollider2D>().size = new Vector2(0.1f, 0.1f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		Vector2 touch_vec = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		//Debug.Log("Mouse：" + Input.mousePosition);
+		//Debug.Log("Mouse：" + touch_vec);
+
+		Collider2D collition2d = Physics2D.OverlapPoint(touch_vec);
+		if (collition2d)
+		{
+			Debug.Log(collition2d + "：" +obj_id + "番タッチ");
+		}
 	}
 
 	/// <summary>
@@ -54,6 +63,10 @@ public class DropData : MonoBehaviour {
 		text_number = in_num;
 
 		obj_id = in_pos_id;
+
+		// 生成するオブジェクトの名前を設定
+		// (ここで設定しないとすべてマテリアル名(Clone)になる)
+		this.name = "DropMaterial" + obj_id;
 
 		// 3D座標に変換
 		Vector2 vec;
