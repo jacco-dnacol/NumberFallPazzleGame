@@ -26,7 +26,5 @@ public class DropDataManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//Vector2 tapPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		//Debug.Log("tap：" + tapPoint);
 	}
 }
