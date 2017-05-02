@@ -4,6 +4,7 @@ using System.Collections;
 public class DropData : MonoBehaviour {
 	private int text_number = 0;
 	private Vector2 pos = Vector2.zero;
+	private Vector2 size;
 	private int obj_id = 0;
 
 	private bool is_create = false;
@@ -13,6 +14,8 @@ public class DropData : MonoBehaviour {
 		// サイズは可変することはない
 		float sizeX = GetComponent<SpriteRenderer>().bounds.size.x;
 		float sizeY = GetComponent<SpriteRenderer>().bounds.size.y;
+		size.x = GetComponent<SpriteRenderer>().bounds.size.x;
+		size.y = GetComponent<SpriteRenderer>().bounds.size.y;
 		float scelaX = 1.0f / sizeX;
 		float scelaY = 1.0f / sizeY;
 		//transform.localScale = new Vector2(DropDataManager.DROP_SIZE, DropDataManager.DROP_SIZE);
@@ -21,11 +24,19 @@ public class DropData : MonoBehaviour {
 		///
 		/// めんどくさいので見た目でサイズ決定。
 		/// 後々計算でサイズが変わるようにすること
-		GetComponent<BoxCollider2D>().size = new Vector2(0.1f, 0.1f);
+		GetComponent<BoxCollider2D>().size = new Vector2(0.15f, 0.15f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		GameObject obj = getClickObject();
+		if (obj != null)
+		{
+			// 以下オブジェクトがクリックされた時の処理
+			//Debug.Log(obj.name + "：" + obj_id + "番タッチ");
+			//Debug.Log(obj);
+		}
+		/*
 		Vector2 touch_vec = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		//Debug.Log("Mouse：" + Input.mousePosition);
 		//Debug.Log("Mouse：" + touch_vec);
@@ -35,6 +46,34 @@ public class DropData : MonoBehaviour {
 		{
 			Debug.Log(collition2d + "：" +obj_id + "番タッチ");
 		}
+        */
+	}
+	// 左クリックしたオブジェクトを取得する関数(2D)
+	private GameObject getClickObject()
+	{
+		GameObject result = null;
+
+		if (Input.GetMouseButton(0))
+		{
+			//Collider2D collition2d = Physics2D.OverlapPoint(tapPoint);
+			//if (collition2d)
+			//{
+			//	result = collition2d.transform.gameObject;
+			//}
+
+			Vector2 tapPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			//Vector2 vec_start = new Vector2((pos.x - size.x), (pos.y - size.y));
+			//Vector2 vec_end = new Vector2((pos.x + size.x), (pos.y + size.y));
+			float x_start = pos.x - size.x;
+			float x_end = pos.x + size.x;
+			float y_start = pos.y - size.y;
+			float y_end = pos.y + size.y;
+			if ((x_start < tapPoint.x && y_start < tapPoint.y) && (x_end > tapPoint.x && y_end > tapPoint.y))
+			{
+			//	Debug.Log("tap：" + tapPoint + " start：" + vec_start + " end：" + vec_end + " num：" + obj_id);
+			}
+		}
+		return result;
 	}
 
 	/// <summary>
@@ -84,9 +123,10 @@ public class DropData : MonoBehaviour {
 	/// <param name="in_pos"></param>
 	public void SetPos(Vector2 in_pos)
 	{
-		pos.x = in_pos.x;
-		pos.y = in_pos.y;
+		//pos.x = in_pos.x;
+		//pos.y = in_pos.y;
 		transform.position = in_pos;
+		pos = transform.position;
 	}
 
 	/// <summary>
@@ -98,6 +138,48 @@ public class DropData : MonoBehaviour {
 		Sprite image = Resources.Load<Sprite>("Image/TestSprite");
 		SpriteRenderer sprite_renderer = GetComponent<SpriteRenderer>();
 		sprite_renderer.sprite = image;
+	}
+
+
+	/// <summary>
+	/// ボタン押下時
+	/// </summary>
+	private void OnMouseDown()
+	{
+		Vector2 vec = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		//Debug.Log(vec);
+
+		Vector2 tapPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		Vector2 vec_start = new Vector2((pos.x - size.x), (pos.y - size.y));
+		Vector2 vec_end = new Vector2((pos.x + size.x), (pos.y + size.y));
+		float x_start = pos.x - size.x;
+		float x_end = pos.x + size.x;
+		float y_start = pos.y - size.y;
+		float y_end = pos.y + size.y;
+		if ((x_start < tapPoint.x && y_start < tapPoint.y) && (x_end > tapPoint.x && y_end > tapPoint.y))
+		{
+			Debug.Log("tap：" + tapPoint + " start：" + vec_start + " end：" + vec_end + " num：" + obj_id);
+		}
+	}
+	/// <summary>
+	/// ボタン押下中ドラッグ時
+	/// </summary>
+	private void OnMouseDrag()
+	{
+		Vector2 vec = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		//Debug.Log(vec);
+
+		Vector2 tapPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		Vector2 vec_start = new Vector2((pos.x - size.x), (pos.y - size.y));
+		Vector2 vec_end = new Vector2((pos.x + size.x), (pos.y + size.y));
+		float x_start = pos.x - size.x;
+		float x_end = pos.x + size.x;
+		float y_start = pos.y - size.y;
+		float y_end = pos.y + size.y;
+		if ((x_start < tapPoint.x && y_start < tapPoint.y) && (x_end > tapPoint.x && y_end > tapPoint.y))
+		{
+			Debug.Log("tap：" + tapPoint + " start：" + vec_start + " end：" + vec_end + " num：" + obj_id);
+		}
 	}
 
 	/// <summary>
